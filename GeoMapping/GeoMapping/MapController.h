@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelLongitude;
 @property (strong, nonatomic) IBOutlet UILabel *labelAltitude;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+- (IBAction)logOut:(UIButton *)sender;
 
 @end

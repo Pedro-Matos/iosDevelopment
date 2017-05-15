@@ -16,6 +16,11 @@
 		448425371EC7256D00994A7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448425351EC7256D00994A7B /* Main.storyboard */; };
 		448425391EC7256D00994A7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 448425381EC7256D00994A7B /* Assets.xcassets */; };
 		4484253C1EC7256D00994A7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4484253A1EC7256D00994A7B /* LaunchScreen.storyboard */; };
+		44AE871B1EC9FEEE001E36C3 /* MeasurementHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AE871A1EC9FEEE001E36C3 /* MeasurementHelper.m */; };
+		44AE871E1EC9FF22001E36C3 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AE871D1EC9FF22001E36C3 /* Constants.m */; };
+		44AE87211ECA2D24001E36C3 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AE87201ECA2D24001E36C3 /* SignUpViewController.m */; };
+		44D43BAE1EC9DCB3005A9F2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44D43BAD1EC9DCB3005A9F2E /* GoogleService-Info.plist */; };
+		67C7B4AC02A21D713D329234 /* libPods-GeoMapping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 694C4AAE593BD4AA6FB2B14B /* libPods-GeoMapping.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +38,16 @@
 		448425381EC7256D00994A7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4484253B1EC7256D00994A7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4484253D1EC7256D00994A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44AE87191EC9FEEE001E36C3 /* MeasurementHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementHelper.h; sourceTree = "<group>"; };
+		44AE871A1EC9FEEE001E36C3 /* MeasurementHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementHelper.m; sourceTree = "<group>"; };
+		44AE871C1EC9FF22001E36C3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		44AE871D1EC9FF22001E36C3 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		44AE871F1ECA2D24001E36C3 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		44AE87201ECA2D24001E36C3 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		44D43BAD1EC9DCB3005A9F2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "GeoMapping/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		694C4AAE593BD4AA6FB2B14B /* libPods-GeoMapping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GeoMapping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5626BD4CCF61C45E0C33CC2 /* Pods-GeoMapping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoMapping.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoMapping/Pods-GeoMapping.release.xcconfig"; sourceTree = "<group>"; };
+		AD5DE3CE004651EBB87A6855 /* Pods-GeoMapping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoMapping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoMapping/Pods-GeoMapping.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +57,7 @@
 			files = (
 				4427F1E41EC7607C00ECD198 /* MapKit.framework in Frameworks */,
 				4427F1DF1EC7587600ECD198 /* CoreLocation.framework in Frameworks */,
+				67C7B4AC02A21D713D329234 /* libPods-GeoMapping.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +69,7 @@
 			children = (
 				4427F1E31EC7607C00ECD198 /* MapKit.framework */,
 				4427F1DE1EC7587600ECD198 /* CoreLocation.framework */,
+				694C4AAE593BD4AA6FB2B14B /* libPods-GeoMapping.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -60,9 +77,11 @@
 		448425201EC7256D00994A7B = {
 			isa = PBXGroup;
 			children = (
+				44D43BAD1EC9DCB3005A9F2E /* GoogleService-Info.plist */,
 				4484252B1EC7256D00994A7B /* GeoMapping */,
 				4484252A1EC7256D00994A7B /* Products */,
 				4427F1DB1EC7586E00ECD198 /* Frameworks */,
+				4B0F05BB0FB8932995341921 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +96,10 @@
 		4484252B1EC7256D00994A7B /* GeoMapping */ = {
 			isa = PBXGroup;
 			children = (
+				44AE871C1EC9FF22001E36C3 /* Constants.h */,
+				44AE871D1EC9FF22001E36C3 /* Constants.m */,
+				44AE87191EC9FEEE001E36C3 /* MeasurementHelper.h */,
+				44AE871A1EC9FEEE001E36C3 /* MeasurementHelper.m */,
 				4484252F1EC7256D00994A7B /* AppDelegate.h */,
 				448425301EC7256D00994A7B /* AppDelegate.m */,
 				448425321EC7256D00994A7B /* ViewController.h */,
@@ -88,6 +111,8 @@
 				4484252C1EC7256D00994A7B /* Supporting Files */,
 				4427F1E01EC75AF600ECD198 /* MapController.h */,
 				4427F1E11EC75AF600ECD198 /* MapController.m */,
+				44AE871F1ECA2D24001E36C3 /* SignUpViewController.h */,
+				44AE87201ECA2D24001E36C3 /* SignUpViewController.m */,
 			);
 			path = GeoMapping;
 			sourceTree = "<group>";
@@ -100,6 +125,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4B0F05BB0FB8932995341921 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD5DE3CE004651EBB87A6855 /* Pods-GeoMapping.debug.xcconfig */,
+				A5626BD4CCF61C45E0C33CC2 /* Pods-GeoMapping.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,9 +141,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 448425401EC7256D00994A7B /* Build configuration list for PBXNativeTarget "GeoMapping" */;
 			buildPhases = (
+				437795E029A4495754177DB6 /* [CP] Check Pods Manifest.lock */,
 				448425251EC7256D00994A7B /* Sources */,
 				448425261EC7256D00994A7B /* Frameworks */,
 				448425271EC7256D00994A7B /* Resources */,
+				88B2723B22F54DECDABDF5BF /* [CP] Embed Pods Frameworks */,
+				0FA06CA8A4AF9386E8C62353 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -165,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4484253C1EC7256D00994A7B /* LaunchScreen.storyboard in Resources */,
+				44D43BAE1EC9DCB3005A9F2E /* GoogleService-Info.plist in Resources */,
 				448425391EC7256D00994A7B /* Assets.xcassets in Resources */,
 				448425371EC7256D00994A7B /* Main.storyboard in Resources */,
 			);
@@ -172,15 +210,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0FA06CA8A4AF9386E8C62353 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoMapping/Pods-GeoMapping-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		437795E029A4495754177DB6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		88B2723B22F54DECDABDF5BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoMapping/Pods-GeoMapping-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		448425251EC7256D00994A7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44AE871B1EC9FEEE001E36C3 /* MeasurementHelper.m in Sources */,
 				4427F1E21EC75AF600ECD198 /* MapController.m in Sources */,
 				448425341EC7256D00994A7B /* ViewController.m in Sources */,
 				448425311EC7256D00994A7B /* AppDelegate.m in Sources */,
 				4484252E1EC7256D00994A7B /* main.m in Sources */,
+				44AE87211ECA2D24001E36C3 /* SignUpViewController.m in Sources */,
+				44AE871E1EC9FF22001E36C3 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +387,7 @@
 		};
 		448425411EC7256D00994A7B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD5DE3CE004651EBB87A6855 /* Pods-GeoMapping.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTQ44L49S9;
@@ -311,6 +401,7 @@
 		};
 		448425421EC7256D00994A7B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5626BD4CCF61C45E0C33CC2 /* Pods-GeoMapping.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTQ44L49S9;

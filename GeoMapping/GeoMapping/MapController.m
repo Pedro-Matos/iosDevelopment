@@ -9,6 +9,9 @@
 #import "MapController.h"
 #define METERS_MILE 1609.344
 #define METERS_FEET 3.28084
+#import "Constants.h"
+
+@import Firebase;
 
 @interface MapController ()
 <CLLocationManagerDelegate>
@@ -70,4 +73,14 @@
 }
 */
 
+- (IBAction)logOut:(UIButton *)sender {
+    FIRAuth *firebaseAuth = [FIRAuth auth];
+    NSError *signOutError;
+    BOOL status = [firebaseAuth signOut:&signOutError];
+    if (!status) {
+        NSLog(@"Error signing out: %@", signOutError);
+        return;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
