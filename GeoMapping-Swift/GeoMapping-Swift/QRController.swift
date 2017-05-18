@@ -8,19 +8,24 @@
 
 import UIKit
 import AVFoundation
+import os.log
 
-class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
     
-
+    let textCellIdentifier = "TextCell"
+    
     @IBOutlet var topbar: UIToolbar!
     @IBOutlet var messageLabel: UILabel!
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    var qr_codes = [String]()
+    var locs = [Locations]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video as the media type parameter.
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -95,25 +100,55 @@ class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             
             if metadataObj.stringValue != nil {
                 messageLabel.text = metadataObj.stringValue
+                
+                var tmp = 0
+                if qr_codes.count > 0{
+                    for i in 0..<qr_codes.count{
+                        if qr_codes[i] == metadataObj.stringValue {
+                            tmp = 1
+                        }
+                    }
+                }
+                
+                if tmp == 0{
+                    qr_codes.append(metadataObj.stringValue)
+                    loadSampleLocations(name_qr: metadataObj.stringValue)
+                    //print(table_locs.locs[0].name)
+                }
+                
+                
+                
             }
         }
     }
     
+    public func loadSampleLocations(name_qr: String){
+        let photo1 = UIImage(named: "Map")
+        
+        guard let loc1 = Locations(name: name_qr, coords: "coordenates", photo: photo1) else {
+            fatalError("Unable to instantiate meal1")
+        }
+        
+        locs += [loc1]
+        
+        saveLocs()
+    }
+    
+    private func saveLocs() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(locs, toFile: Locations.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        }
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+   
 }
