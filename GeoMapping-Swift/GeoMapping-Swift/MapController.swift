@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import MapKit
 import CoreLocation
+import os.log
 
 class MapController: UIViewController {
     var locationManager: CLLocationManager?
@@ -18,6 +19,8 @@ class MapController: UIViewController {
     
     
     let dataService = DataTransferServiceManagement()
+    
+    var locs = [Locations]()
     
     
     @IBAction func logOut(_ sender: Any) {
@@ -37,6 +40,9 @@ class MapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //load the locations
+        loadSampleLocations()
+        
         dataService.delegate = self
         
         locationManager = CLLocationManager()
@@ -46,6 +52,17 @@ class MapController: UIViewController {
         
         let homeLocation = locationManager?.location
         centerMapOnLocation(location: homeLocation!)
+    }
+    
+    public func loadSampleLocations(){
+        if let savedMeals = loadLocs() {
+            locs += savedMeals
+        }
+    }
+    
+    //MARK: - PERSISTENCE
+    private func loadLocs() -> [Locations]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Locations.ArchiveURL.path) as? [Locations]
     }
     
     func centerMapOnLocation(location: CLLocation)
@@ -62,7 +79,45 @@ class MapController: UIViewController {
     }
     
     @IBAction func sendData(_ sender: Any) {
-        dataService.send(locations: "teste")
+        
+        /*let locs_dic = entries.reduce([Int:Locations]()) { (var dict, entry) in
+            let elements = entry.characters.split("=").map(String.init)
+            dict[elements[0]] = elements[1]
+            return dict
+        }*/
+        
+        var locs_dic :  [Int: Locations] = [:]
+        
+        if(locs.count > 0){
+            var i = 0
+            while i < locs.count {
+                locs_dic[i] = locs[i]
+                i = i + 1
+            }
+            
+            print("dictionary: \(locs_dic)")
+            let state = dataService.send(locations: locs_dic)
+            
+            if (!state){
+                let alertController = UIAlertController(title: " No connections", message: "0 peers connected!", preferredStyle: .alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
+            
+        }
+        else{
+            //popup para dizer que nao ha valores
+            let alertController = UIAlertController(title: "Can't send data", message: "Don't have enought data to send", preferredStyle: .alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
         
     }
 }
@@ -75,16 +130,54 @@ extension MapController : DataTransferServiceManagementDelegate {
         }
     }
     
-    func dataChanged(manager: DataTransferServiceManagement, data: String) {
+    func dataChanged(manager: DataTransferServiceManagement, data: Dictionary<Int, Locations>) {
         OperationQueue.main.addOperation {
+            
+            var locs_tmp = [Locations]()
+            print("dictionary_received: \(data)")
+            var i = 0
+            while i < data.count {
+                let l = data[i]!
+                
+                
+                var tmp = 0
+                if self.locs.count > 0{
+                    for i in 0..<self.locs.count{
+                        if self.locs[i].name == l.name {
+                            tmp = 1
+                        }
+                    }
+                }
+                
+                if tmp == 0{
+                    locs_tmp += [l]
+                }
+                
+                i = i + 1
+            }
+            
+            self.locs += locs_tmp
+            self.saveLocs()
+            
             print("Teste: dataChanged")
-            let alertController = UIAlertController(title: "Data Received", message: "Data received by multipeer!", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Data Received", message: String(data.count), preferredStyle: .alert)
             
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    private func saveLocs() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(locs, toFile: Locations.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        }
+        
     }
     
 }

@@ -28,19 +28,25 @@ class DataTransferServiceManagement: NSObject {
         return session
     }()
     
-    func send(locations : String) {
-        NSLog("%@", "Send Locations to \(session.connectedPeers.count) peers")
+    func send(locations : Dictionary<Int, Locations>) -> Bool{
+       
+       
+        let dataToSend = NSKeyedArchiver.archivedData(withRootObject: locations)
         
         if session.connectedPeers.count > 0 {
             do {
-                try self.session.send(locations.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
+                NSLog("%@", "Send Locations to \(session.connectedPeers.count) peers")
+                try self.session.send(dataToSend, toPeers: session.connectedPeers, with: .reliable)
             }
             catch let error {
                 NSLog("%@", "Error for sending: \(error)")
             }
+            return true
         }
-        
+        else{
+            return false        }
     }
+    
     
     override init() {
         self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: DataServiceType)
@@ -69,7 +75,18 @@ extension DataTransferServiceManagement : MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-        invitationHandler(true, self.session)
+        
+        if peerID.displayName != UIDevice.current.name{
+            
+            if(!session.connectedPeers.map{$0.displayName}.contains(peerID.displayName)){
+                NSLog("%@", "invitePeer: \(peerID)")
+                invitationHandler(true, self.session)
+            }
+            else{
+                NSLog("%@", "Peer already connected: \(peerID)")
+            }
+        }
+
     }
 }
 
@@ -81,8 +98,21 @@ extension DataTransferServiceManagement : MCNearbyServiceBrowserDelegate {
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         NSLog("%@", "foundPeer: \(peerID)")
-        NSLog("%@", "invitePeer: \(peerID)")
-        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
+       
+        print("nome_peer: \(peerID.displayName)")
+        print("nome_tele: \(UIDevice.current.name)")
+        if peerID.displayName != UIDevice.current.name{
+            
+            if(!session.connectedPeers.map{$0.displayName}.contains(peerID.displayName)){
+                NSLog("%@", "invitePeer: \(peerID)")
+                browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
+            }
+            else{
+                NSLog("%@", "Peer already connected: \(peerID)")
+            }
+            
+            
+        }
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -101,8 +131,9 @@ extension DataTransferServiceManagement : MCSessionDelegate {
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
-        let str = String(data: data, encoding: .utf8)!
-        self.delegate?.dataChanged(manager: self, data: str)
+        //let dic: [String: String] = NSKeyedArchiver.
+        let dictionary: Dictionary? = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Int : Locations]
+        self.delegate?.dataChanged(manager: self, data: dictionary!)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -122,7 +153,7 @@ extension DataTransferServiceManagement : MCSessionDelegate {
 protocol DataTransferServiceManagementDelegate {
     
     func connectedDevicesChanged(manager : DataTransferServiceManagement, connectedDevices: [String])
-    func dataChanged(manager : DataTransferServiceManagement, data: String)
+    func dataChanged(manager : DataTransferServiceManagement, data: Dictionary<Int, Locations>)
     
 }
 
