@@ -133,16 +133,8 @@
                                 <rect key="frame" x="7" y="0.0" width="307" height="330"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3c-Ph-WQ1">
-                                <rect key="frame" x="104" y="440" width="113" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Show Favourites"/>
-                                <connections>
-                                    <segue destination="9iB-je-CMG" kind="show" id="z31-It-3KM"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEQ-y1-xak">
-                                <rect key="frame" x="111" y="394" width="98" height="30"/>
+                                <rect key="frame" x="111" y="360" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Read QR code"/>
                                 <connections>
@@ -155,6 +147,22 @@
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logOut:" destination="dmz-bt-hrt" eventType="touchUpInside" id="hdR-Ln-v0p"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rK6-qv-Z6H">
+                                <rect key="frame" x="123" y="442" width="72" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send Data"/>
+                                <connections>
+                                    <action selector="sendData:" destination="dmz-bt-hrt" eventType="touchUpInside" id="UrK-JU-O2F"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3c-Ph-WQ1">
+                                <rect key="frame" x="104" y="398" width="113" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show Favourites"/>
+                                <connections>
+                                    <segue destination="9iB-je-CMG" kind="show" id="z31-It-3KM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -270,7 +278,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AtA-8o-kJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2638.125" y="597.88732394366195"/>
+            <point key="canvasLocation" x="3635.625" y="597.88732394366195"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="skv-Od-JG7">
@@ -288,7 +296,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dw9-0z-ck0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1640.625" y="597.88732394366195"/>
+            <point key="canvasLocation" x="2638.125" y="597.88732394366195"/>
         </scene>
     </scenes>
     <resources>

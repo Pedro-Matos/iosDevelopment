@@ -16,6 +16,10 @@ class MapController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    
+    let dataService = DataTransferServiceManagement()
+    
+    
     @IBAction func logOut(_ sender: Any) {
         if FIRAuth.auth()?.currentUser != nil {
             do {
@@ -32,6 +36,8 @@ class MapController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataService.delegate = self
         
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
@@ -55,15 +61,34 @@ class MapController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func sendData(_ sender: Any) {
+        dataService.send(locations: "teste")
+        
     }
-    */
-
 }
+
+extension MapController : DataTransferServiceManagementDelegate {
+    
+    func connectedDevicesChanged(manager: DataTransferServiceManagement, connectedDevices: [String]) {
+        OperationQueue.main.addOperation {
+            print("Connections: \(connectedDevices)")
+        }
+    }
+    
+    func dataChanged(manager: DataTransferServiceManagement, data: String) {
+        OperationQueue.main.addOperation {
+            print("Teste: dataChanged")
+            let alertController = UIAlertController(title: "Data Received", message: "Data received by multipeer!", preferredStyle: .alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+}
+
+
+
+

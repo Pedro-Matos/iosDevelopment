@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		442D6FF81ED07DAA00962084 /* DataTransferServiceManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442D6FF71ED07DAA00962084 /* DataTransferServiceManagement.swift */; };
 		442E63541ECDF4C2006CDB6D /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E63531ECDF4C2006CDB6D /* LocationsTableViewController.swift */; };
 		442E63561ECDF52F006CDB6D /* LocationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E63551ECDF52F006CDB6D /* LocationsTableViewCell.swift */; };
 		442E63581ECE3315006CDB6D /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E63571ECE3315006CDB6D /* Locations.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		3DE9BA0C790887A4E5232A94 /* Pods_GeoMapping_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoMapping_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42DD44461554B9546194B8C0 /* Pods-GeoMapping-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoMapping-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoMapping-Swift/Pods-GeoMapping-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		442D6FF71ED07DAA00962084 /* DataTransferServiceManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransferServiceManagement.swift; sourceTree = "<group>"; };
 		442E63531ECDF4C2006CDB6D /* LocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 		442E63551ECDF52F006CDB6D /* LocationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewCell.swift; sourceTree = "<group>"; };
 		442E63571ECE3315006CDB6D /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				442E63531ECDF4C2006CDB6D /* LocationsTableViewController.swift */,
 				442E63551ECDF52F006CDB6D /* LocationsTableViewCell.swift */,
 				442E63571ECE3315006CDB6D /* Locations.swift */,
+				442D6FF71ED07DAA00962084 /* DataTransferServiceManagement.swift */,
 			);
 			path = "GeoMapping-Swift";
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				44F6CF2D1ECB53C00087123C /* ViewController.swift in Sources */,
 				44F6CF3D1ECB54830087123C /* MapController.swift in Sources */,
 				442E63581ECE3315006CDB6D /* Locations.swift in Sources */,
+				442D6FF81ED07DAA00962084 /* DataTransferServiceManagement.swift in Sources */,
 				44F6CF2B1ECB53C00087123C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
