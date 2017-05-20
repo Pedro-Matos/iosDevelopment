@@ -16,12 +16,15 @@ class LocationsTableViewController: UITableViewController {
     var locs = [Locations]()
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //load the sample data
         loadSampleLocations()
+        
+        // Use the edit button item provided by the table view controller.
+        navigationItem.rightBarButtonItem = editButtonItem
+        
     }
     
     public func loadSampleLocations(){
@@ -62,10 +65,9 @@ class LocationsTableViewController: UITableViewController {
         // Fetches the appropriate meal for the data source layout.
         let loc = locs[indexPath.row]
         
-        cell.nameLabel.text = loc.name
         cell.photoImageView.image = loc.photo
         cell.coords.text = loc.coords
-        
+        cell.nameLabel.text = loc.name
 
         return cell
     }
@@ -75,27 +77,39 @@ class LocationsTableViewController: UITableViewController {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Locations.ArchiveURL.path) as? [Locations]
     }
     
+    private func saveLocs() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(locs, toFile: Locations.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        }
+        
+    }
+    
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            locs.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            saveLocs()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

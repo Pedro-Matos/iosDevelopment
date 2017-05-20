@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import os.log
+import CoreLocation
 
 class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
@@ -20,12 +21,18 @@ class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
-    var qr_codes = [String]()
     var locs = [Locations]()
+    var locationManager: CLLocationManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //user location
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        
+        //load the locations
+        loadSampleLocations()
     
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video as the media type parameter.
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -102,18 +109,24 @@ class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
                 messageLabel.text = metadataObj.stringValue
                 
                 var tmp = 0
-                if qr_codes.count > 0{
-                    for i in 0..<qr_codes.count{
-                        if qr_codes[i] == metadataObj.stringValue {
+                if locs.count > 0{
+                    for i in 0..<locs.count{
+                        if locs[i].name == metadataObj.stringValue {
                             tmp = 1
                         }
                     }
                 }
                 
                 if tmp == 0{
-                    qr_codes.append(metadataObj.stringValue)
-                    loadSampleLocations(name_qr: metadataObj.stringValue)
-                    //print(table_locs.locs[0].name)
+                    print(metadataObj.stringValue)
+                    let homeLocation = locationManager?.location
+                    let lat = String(format : "%.3f", (homeLocation?.coordinate.latitude)!)
+                    let long = String(format : "%.3f", (homeLocation?.coordinate.longitude)!)
+                    let coords = "Lat: " + lat+"; Long: "+long
+                    loadSampleLocations(name_qr: metadataObj.stringValue, coords: coords)
+                    
+                    
+                
                 }
                 
                 
@@ -122,10 +135,10 @@ class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         }
     }
     
-    public func loadSampleLocations(name_qr: String){
+    public func loadSampleLocations(name_qr: String, coords: String){
         let photo1 = UIImage(named: "Map")
         
-        guard let loc1 = Locations(name: name_qr, coords: "coordenates", photo: photo1) else {
+        guard let loc1 = Locations(name: name_qr, coords: coords, photo: photo1) else {
             fatalError("Unable to instantiate meal1")
         }
         
@@ -149,6 +162,18 @@ class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    public func loadSampleLocations(){
+        if let savedMeals = loadLocs() {
+            locs += savedMeals
+        }
+    }
+    
+    //MARK: - PERSISTENCE
+    private func loadLocs() -> [Locations]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Locations.ArchiveURL.path) as? [Locations]
+    }
+
     
    
 }

@@ -221,26 +221,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationsTableViewCell" rowHeight="90" id="sMK-3s-PAJ" customClass="LocationsTableViewCell" customModule="GeoMapping_Swift" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="LocationsTableViewCell" rowHeight="90" id="sMK-3s-PAJ" customClass="LocationsTableViewCell" customModule="GeoMapping_Swift" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sMK-3s-PAJ" id="9n0-tP-adH">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.png" translatesAutoresizingMaskIntoConstraints="NO" id="zqq-n4-ymw">
-                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coords:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Cz-Re-ikB">
-                                            <rect key="frame" x="98" y="52" width="222" height="21"/>
+                                            <rect key="frame" x="98" y="49" width="214" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlg-n4-ktK">
-                                            <rect key="frame" x="98" y="8" width="222" height="21"/>
+                                        <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Map" translatesAutoresizingMaskIntoConstraints="NO" id="zqq-n4-ymw">
+                                            <rect key="frame" x="0.0" y="12" width="65" height="65"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sW3-IT-Xt7">
+                                            <rect key="frame" x="98" y="20" width="161" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -250,9 +250,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="coords" destination="5Cz-Re-ikB" id="JLc-hZ-N50"/>
-                                    <outlet property="nameLabel" destination="Jlg-n4-ktK" id="L5q-2v-zmp"/>
+                                    <outlet property="nameLabel" destination="sW3-IT-Xt7" id="s4x-wD-sgp"/>
                                     <outlet property="photoImageView" destination="zqq-n4-ymw" id="IB0-uz-eoP"/>
-                                    <outlet property="textLabel" destination="Jlg-n4-ktK" id="5Eb-qF-WaM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -262,9 +261,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Your locations" id="mIM-Sh-43v">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="DLX-9d-Dnf">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="4CL-ji-gxs">
                             <connections>
-                                <segue destination="dmz-bt-hrt" kind="show" id="Gb0-zd-7h5"/>
+                                <segue destination="dmz-bt-hrt" kind="show" id="6Ub-ZK-yN1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -293,9 +292,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="person.png" width="35" height="35"/>
+        <image name="Map" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Gb0-zd-7h5"/>
+        <segue reference="6Ub-ZK-yN1"/>
     </inferredMetricsTieBreakers>
 </document>

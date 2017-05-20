@@ -11,9 +11,10 @@ import UIKit
 class LocationsTableViewCell: UITableViewCell {
     
     //MARK: Properties
-    @IBOutlet weak var nameLabel: UILabel!
+    
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var coords: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     
     
