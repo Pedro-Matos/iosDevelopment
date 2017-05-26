@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -130,7 +130,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Qkj-wd-on7">
-                                <rect key="frame" x="7" y="0.0" width="307" height="330"/>
+                                <rect key="frame" x="7" y="72" width="307" height="258"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEQ-y1-xak">
@@ -149,14 +149,6 @@
                                     <action selector="logOut:" destination="dmz-bt-hrt" eventType="touchUpInside" id="hdR-Ln-v0p"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rK6-qv-Z6H">
-                                <rect key="frame" x="123" y="442" width="72" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Send Data"/>
-                                <connections>
-                                    <action selector="sendData:" destination="dmz-bt-hrt" eventType="touchUpInside" id="UrK-JU-O2F"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3c-Ph-WQ1">
                                 <rect key="frame" x="104" y="398" width="113" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -165,6 +157,22 @@
                                     <segue destination="9iB-je-CMG" kind="show" id="z31-It-3KM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O96-Gl-krr">
+                                <rect key="frame" x="142" y="442" width="39" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Peers"/>
+                                <connections>
+                                    <segue destination="U7H-We-0GR" kind="show" id="zXy-OK-WXR"/>
+                                </connections>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fkn-LN-yvj">
+                                <rect key="frame" x="0.0" y="529" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="Dvs-jN-WSX"/>
+                                    <barButtonItem title="Item" id="Udk-G6-gEq"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -174,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4RZ-Oy-Y2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="821.25" y="34.859154929577464"/>
+            <point key="canvasLocation" x="800.625" y="34.859154929577464"/>
         </scene>
         <!--Controller-->
         <scene sceneID="vHs-iE-zhQ">
@@ -278,7 +286,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AtA-8o-kJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3635.625" y="597.88732394366195"/>
+            <point key="canvasLocation" x="4633.125" y="597.88732394366195"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="skv-Od-JG7">
@@ -296,7 +304,136 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dw9-0z-ck0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2638.125" y="597.88732394366195"/>
+            <point key="canvasLocation" x="3635.625" y="597.88732394366195"/>
+        </scene>
+        <!--Peers-->
+        <scene sceneID="3BN-fj-Hlm">
+            <objects>
+                <viewController id="DOD-Wq-cvr" customClass="PeersViewController" customModule="GeoMapping_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZYj-C5-WF9"/>
+                        <viewControllerLayoutGuide type="bottom" id="XNj-tj-4JE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mXr-co-bKk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9F3-2O-dwI">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="fLg-Ro-qhU">
+                                        <connections>
+                                            <action selector="startStopAdvertising:" destination="DOD-Wq-cvr" id="iWt-dN-f2k"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UF9-rb-gim">
+                                <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="idCell" rowHeight="90" id="W1e-Z6-AMV" customClass="PeersCellViewController" customModule="GeoMapping_Swift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W1e-Z6-AMV" id="HCy-g7-ELG">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAd-YG-e5H">
+                                                    <rect key="frame" x="8" y="29" width="304" height="53"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="peerID_label" destination="LAd-YG-e5H" id="Nfx-tN-ZJ4"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9F3-2O-dwI" secondAttribute="trailing" id="Fmu-xf-ne0"/>
+                            <constraint firstItem="9F3-2O-dwI" firstAttribute="top" secondItem="UF9-rb-gim" secondAttribute="bottom" id="Fyg-3V-BUS"/>
+                            <constraint firstItem="9F3-2O-dwI" firstAttribute="leading" secondItem="mXr-co-bKk" secondAttribute="leading" id="IzP-xP-pXW"/>
+                            <constraint firstItem="9F3-2O-dwI" firstAttribute="trailing" secondItem="UF9-rb-gim" secondAttribute="trailing" id="XWR-5W-xXA"/>
+                            <constraint firstItem="9F3-2O-dwI" firstAttribute="top" secondItem="UF9-rb-gim" secondAttribute="bottom" id="tM8-VP-jpa"/>
+                            <constraint firstItem="9F3-2O-dwI" firstAttribute="bottom" secondItem="XNj-tj-4JE" secondAttribute="top" id="w3Q-n2-P3g"/>
+                            <constraint firstItem="9F3-2O-dwI" firstAttribute="leading" secondItem="UF9-rb-gim" secondAttribute="leading" id="wVv-UI-Riq"/>
+                            <constraint firstItem="UF9-rb-gim" firstAttribute="top" secondItem="mXr-co-bKk" secondAttribute="top" id="yOW-Qe-tBV">
+                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="9F3-2O-dwI"/>
+                                <exclude reference="UF9-rb-gim"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="yOW-Qe-tBV"/>
+                                <exclude reference="Fmu-xf-ne0"/>
+                                <exclude reference="Fyg-3V-BUS"/>
+                                <exclude reference="IzP-xP-pXW"/>
+                                <exclude reference="XWR-5W-xXA"/>
+                                <exclude reference="tM8-VP-jpa"/>
+                                <exclude reference="w3Q-n2-P3g"/>
+                                <exclude reference="wVv-UI-Riq"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="9F3-2O-dwI"/>
+                                <include reference="UF9-rb-gim"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="yOW-Qe-tBV"/>
+                                <include reference="Fmu-xf-ne0"/>
+                                <include reference="Fyg-3V-BUS"/>
+                                <include reference="IzP-xP-pXW"/>
+                                <include reference="XWR-5W-xXA"/>
+                                <include reference="tM8-VP-jpa"/>
+                                <include reference="w3Q-n2-P3g"/>
+                                <include reference="wVv-UI-Riq"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Peers" id="dV7-GA-7RU">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Lc8-Kc-ygM">
+                            <connections>
+                                <segue destination="dmz-bt-hrt" kind="show" id="7ba-wJ-DNv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tblPeers" destination="UF9-rb-gim" id="AzC-Tq-C4v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nd3-mD-URw" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2043.75" y="864.08450704225356"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="COl-I0-AGe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U7H-We-0GR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mbU-2p-Rta">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DOD-Wq-cvr" kind="relationship" relationship="rootViewController" id="rdc-u9-0rr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dqs-8Z-e9x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1046.25" y="864.08450704225356"/>
         </scene>
     </scenes>
     <resources>

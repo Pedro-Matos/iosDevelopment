@@ -18,7 +18,7 @@ class MapController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     
-    let dataService = DataTransferServiceManagement()
+    //let dataService = DataTransferServiceManagement()
     
     var locs = [Locations]()
     
@@ -43,7 +43,7 @@ class MapController: UIViewController {
         //load the locations
         loadSampleLocations()
         
-        dataService.delegate = self
+        //dataService.delegate = self
         
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
@@ -78,7 +78,7 @@ class MapController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func sendData(_ sender: Any) {
+    /*@IBAction func sendData(_ sender: Any) {
         
         /*let locs_dic = entries.reduce([Int:Locations]()) { (var dict, entry) in
             let elements = entry.characters.split("=").map(String.init)
@@ -119,10 +119,10 @@ class MapController: UIViewController {
         }
         
         
-    }
+    }*/
 }
 
-extension MapController : DataTransferServiceManagementDelegate {
+/*extension MapController : DataTransferServiceManagementDelegate {
     
     func connectedDevicesChanged(manager: DataTransferServiceManagement, connectedDevices: [String]) {
         OperationQueue.main.addOperation {
@@ -180,7 +180,7 @@ extension MapController : DataTransferServiceManagementDelegate {
         
     }
     
-}
+}*/
 
 
 
