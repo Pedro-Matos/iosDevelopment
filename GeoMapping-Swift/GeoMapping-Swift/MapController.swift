@@ -71,8 +71,7 @@ class MapController: UIViewController {
     }
     
     
-    
-    @IBAction func logOut(_ sender: Any) {
+    @IBAction func sign_out(_ sender: Any) {
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
@@ -83,8 +82,10 @@ class MapController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-        
     }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
