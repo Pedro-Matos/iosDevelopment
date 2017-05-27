@@ -133,16 +133,8 @@
                                 <rect key="frame" x="7" y="72" width="307" height="258"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEQ-y1-xak">
-                                <rect key="frame" x="111" y="360" width="98" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Read QR code"/>
-                                <connections>
-                                    <segue destination="cBb-B2-GqW" kind="show" id="Dfk-KF-Q0R"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jF8-sf-sL0">
-                                <rect key="frame" x="136" y="480" width="48" height="30"/>
+                                <rect key="frame" x="266" y="530" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
@@ -150,29 +142,37 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3c-Ph-WQ1">
-                                <rect key="frame" x="104" y="398" width="113" height="30"/>
+                                <rect key="frame" x="104" y="413" width="113" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Show Favourites"/>
                                 <connections>
-                                    <segue destination="9iB-je-CMG" kind="show" id="z31-It-3KM"/>
+                                    <segue destination="9iB-je-CMG" kind="show" id="osb-JJ-cLY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O96-Gl-krr">
-                                <rect key="frame" x="142" y="442" width="39" height="30"/>
+                                <rect key="frame" x="141" y="444" width="39" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Peers"/>
                                 <connections>
                                     <segue destination="U7H-We-0GR" kind="show" id="zXy-OK-WXR"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fkn-LN-yvj">
-                                <rect key="frame" x="0.0" y="529" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Item" id="Dvs-jN-WSX"/>
-                                    <barButtonItem title="Item" id="Udk-G6-gEq"/>
-                                </items>
-                            </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLi-r1-EeG">
+                                <rect key="frame" x="130" y="367" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Read QR"/>
+                                <connections>
+                                    <segue destination="cBb-B2-GqW" kind="show" id="BjS-bE-EWS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ga-hR-UYQ">
+                                <rect key="frame" x="7" y="518" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Session1"/>
+                                <connections>
+                                    <action selector="create_session1:" destination="dmz-bt-hrt" eventType="touchUpInside" id="HYh-QL-aGk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -226,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egN-dL-lNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1665" y="-188.02816901408451"/>
+            <point key="canvasLocation" x="1939" y="-725"/>
         </scene>
         <!--Your locations-->
         <scene sceneID="UUr-e1-fGi">
@@ -286,7 +286,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AtA-8o-kJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4633.125" y="597.88732394366195"/>
+            <point key="canvasLocation" x="2841" y="223"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="skv-Od-JG7">
@@ -304,7 +304,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dw9-0z-ck0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3635.625" y="597.88732394366195"/>
+            <point key="canvasLocation" x="1995" y="192"/>
         </scene>
         <!--Peers-->
         <scene sceneID="3BN-fj-Hlm">

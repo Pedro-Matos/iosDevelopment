@@ -17,10 +17,59 @@ class MapController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    var isSession: Bool!
     
     //let dataService = DataTransferServiceManagement()
     
     var locs = [Locations]()
+    
+    let session1_anot = ["40.6409015@-8.6537111","40.6391622@-8.6532668","40.6396443@-8.6524315"]
+    
+    let session2_anot = ["40.6331812@-8.66077","40.6303024@-8.6596947"]
+    
+   
+    @IBAction func create_session1(_ sender: Any) {
+        
+    
+        //Delete all notations
+        let annotations = self.mapView.annotations
+         for _annotation in annotations {
+            if let annotation = _annotation as? MKAnnotation
+            {
+                self.mapView.removeAnnotation(annotation)
+            }
+         }
+        
+        var sess = [String]()
+        
+        if self.isSession == true {
+            sess = session1_anot
+        }
+        else{
+            sess = session2_anot
+        }
+        
+        self.isSession = !self.isSession
+        
+        var i = 0
+        while i < sess.count {
+            let fullName    = sess[i]
+            let fullNameArr = fullName.components(separatedBy: "@")
+            
+            let lat    = fullNameArr[0]
+            let long = fullNameArr[1]
+            
+            let annot = MKPointAnnotation()
+            
+            annot.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(long)!)
+            mapView.addAnnotation(annot)
+        
+            i = i + 1
+        }
+        
+        
+    }
+    
     
     
     @IBAction func logOut(_ sender: Any) {
@@ -50,10 +99,13 @@ class MapController: UIViewController {
         
         mapView.showsUserLocation = true
         
+        isSession = true
+        
         let homeLocation = locationManager?.location
         centerMapOnLocation(location: homeLocation!)
     }
     
+   
     public func loadSampleLocations(){
         if let savedMeals = loadLocs() {
             locs += savedMeals
@@ -78,109 +130,8 @@ class MapController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*@IBAction func sendData(_ sender: Any) {
-        
-        /*let locs_dic = entries.reduce([Int:Locations]()) { (var dict, entry) in
-            let elements = entry.characters.split("=").map(String.init)
-            dict[elements[0]] = elements[1]
-            return dict
-        }*/
-        
-        var locs_dic :  [Int: Locations] = [:]
-        
-        if(locs.count > 0){
-            var i = 0
-            while i < locs.count {
-                locs_dic[i] = locs[i]
-                i = i + 1
-            }
-            
-            print("dictionary: \(locs_dic)")
-            let state = dataService.send(locations: locs_dic)
-            
-            if (!state){
-                let alertController = UIAlertController(title: " No connections", message: "0 peers connected!", preferredStyle: .alert)
-                
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-            }
-            
-        }
-        else{
-            //popup para dizer que nao ha valores
-            let alertController = UIAlertController(title: "Can't send data", message: "Don't have enought data to send", preferredStyle: .alert)
-            
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-        }
-        
-        
-    }*/
 }
 
-/*extension MapController : DataTransferServiceManagementDelegate {
-    
-    func connectedDevicesChanged(manager: DataTransferServiceManagement, connectedDevices: [String]) {
-        OperationQueue.main.addOperation {
-            print("Connections: \(connectedDevices)")
-        }
-    }
-    
-    func dataChanged(manager: DataTransferServiceManagement, data: Dictionary<Int, Locations>) {
-        OperationQueue.main.addOperation {
-            
-            var locs_tmp = [Locations]()
-            print("dictionary_received: \(data)")
-            var i = 0
-            while i < data.count {
-                let l = data[i]!
-                
-                
-                var tmp = 0
-                if self.locs.count > 0{
-                    for i in 0..<self.locs.count{
-                        if self.locs[i].name == l.name {
-                            tmp = 1
-                        }
-                    }
-                }
-                
-                if tmp == 0{
-                    locs_tmp += [l]
-                }
-                
-                i = i + 1
-            }
-            
-            self.locs += locs_tmp
-            self.saveLocs()
-            
-            print("Teste: dataChanged")
-            let alertController = UIAlertController(title: "Data Received", message: String(data.count), preferredStyle: .alert)
-            
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-        }
-    }
-    
-    private func saveLocs() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(locs, toFile: Locations.ArchiveURL.path)
-        
-        if isSuccessfulSave {
-            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save meals...", log: OSLog.default, type: .error)
-        }
-        
-    }
-    
-}*/
 
 
 
