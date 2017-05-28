@@ -24,8 +24,13 @@ class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     var locs = [Locations]()
     var locationManager: CLLocationManager?
     
+    //MARK: Properties
+    var coords_visited = [CoordsClass]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadSampleCoords()
         
         //user location
         locationManager = CLLocationManager()
@@ -88,6 +93,39 @@ class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         
     }
     
+    
+    public func loadSampleCoords(){
+        if let savedMeals = loadCoords() {
+            coords_visited += savedMeals
+        }
+    }
+    
+    private func loadCoords() -> [CoordsClass]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: CoordsClass.ArchiveURL.path) as? [CoordsClass]
+    }
+    
+    private func saveCoords() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(coords_visited, toFile: CoordsClass.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("Coords successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save coords...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    public func loadSampleCoords(latitude: String, longitude: String){
+       
+        guard let coord1 = CoordsClass(latitude:latitude, longitude:longitude ) else {
+            fatalError("Unable to instantiate coords")
+        }
+        
+        coords_visited += [coord1]
+        
+        saveCoords()
+    }
+
+    
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
@@ -124,7 +162,7 @@ class QRController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
                     let long = String(format : "%.3f", (homeLocation?.coordinate.longitude)!)
                     let coords = "Lat: " + lat+"; Long: "+long
                     loadSampleLocations(name_qr: metadataObj.stringValue, coords: coords)
-                    
+                    loadSampleCoords(latitude:lat, longitude:long)
                     
                 
                 }

@@ -70,16 +70,46 @@ class MapController: UIViewController {
         
         //casa: @40.6353059,-8.6570489
         //fabrica ciencia viva: @40.636576,-8.6551177
-        let teste = MKPointAnnotation()
+        /*let teste = MKPointAnnotation()
         teste.coordinate = CLLocationCoordinate2D(latitude: 40.636576, longitude: -8.6551177)
         mapView.addAnnotation(teste)
         
         let teste2 = MKPointAnnotation()
         teste2.coordinate = CLLocationCoordinate2D(latitude: 40.6353059, longitude: -8.6570489)
-        mapView.addAnnotation(teste2)
+        mapView.addAnnotation(teste2)*/
+        
+        // casa gisela: @40.6332187,-8.6485305
+        let teste2 = MKPointAnnotation()
+        teste2.coordinate = CLLocationCoordinate2D(latitude: 40.6332187, longitude: -8.6485305)
+        var k = 0
+        var tmp = 0
+        while k < coords_visited.count{
+            let lat = coords_visited[k].latitude
+            let long = coords_visited[k].longitude
+            
+            let coordinate_casa = CLLocation(latitude: 40.6332187, longitude: -8.6485305)
+            let coordinate_array = CLLocation(latitude: Double(lat)!, longitude: Double(long)!)
+            let distanceInMeters = coordinate_casa.distance(from: coordinate_array)
+            
+            NSLog("%@", "DISTANCIA: \(distanceInMeters)")
+            if(distanceInMeters < 10){
+                tmp = 1
+                print("xDDDDDDDDDDDDD")
+            }
+            k = k + 1
+        }
+        if (tmp == 0){
+            mapView.addAnnotation(teste2)
+        }
         
         
-        let pins = mapView.annotations 
+        NSLog("%@", "INDICE: \(k)")
+        
+        let teste1 = MKPointAnnotation()
+        teste1.coordinate = CLLocationCoordinate2D(latitude: 40.6342187, longitude: -8.6495305)
+        mapView.addAnnotation(teste1)
+        
+        /*let pins = mapView.annotations
         let currentLocation = mapView.userLocation.location!
         
         let nearestPin: MKAnnotation? = pins.reduce((CLLocationDistanceMax, nil)) { (nearest, pin) in
@@ -89,7 +119,8 @@ class MapController: UIViewController {
             return distance < nearest.0 ? (distance, pin) : nearest
             }.1
         
-        NSLog("%@", "CLOSEEE: \(nearestPin?.coordinate)")
+        NSLog("%@", "CLOSEEE: \(nearestPin?.coordinate)")*/
+        
         
         
     }
@@ -118,6 +149,8 @@ class MapController: UIViewController {
         loadSampleLocations()
         
         loadSampleCoords()
+        NSLog("%@", "COORDS_ARRAY: \(coords_visited)")
+        
         
         //dataService.delegate = self
         
@@ -139,7 +172,7 @@ class MapController: UIViewController {
             locs += savedMeals
         }
     }
-    
+     
     public func loadSampleCoords(){
         if let savedMeals = loadCoords() {
             coords_visited += savedMeals
