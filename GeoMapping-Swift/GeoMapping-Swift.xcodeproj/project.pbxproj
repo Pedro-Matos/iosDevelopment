@@ -10,6 +10,7 @@
 		442E63541ECDF4C2006CDB6D /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E63531ECDF4C2006CDB6D /* LocationsTableViewController.swift */; };
 		442E63561ECDF52F006CDB6D /* LocationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E63551ECDF52F006CDB6D /* LocationsTableViewCell.swift */; };
 		442E63581ECE3315006CDB6D /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E63571ECE3315006CDB6D /* Locations.swift */; };
+		443D05F41EDB132500876906 /* CoordsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D05F31EDB132500876906 /* CoordsClass.swift */; };
 		44DB74961ED7386900FC43CE /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB74951ED7386900FC43CE /* MPCManager.swift */; };
 		44DB749A1ED73E2100FC43CE /* PeersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB74991ED73E2100FC43CE /* PeersViewController.swift */; };
 		44DB749C1ED744C300FC43CE /* PeersCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB749B1ED744C300FC43CE /* PeersCellViewController.swift */; };
@@ -31,6 +32,7 @@
 		442E63531ECDF4C2006CDB6D /* LocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 		442E63551ECDF52F006CDB6D /* LocationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewCell.swift; sourceTree = "<group>"; };
 		442E63571ECE3315006CDB6D /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		443D05F31EDB132500876906 /* CoordsClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordsClass.swift; sourceTree = "<group>"; };
 		44DB74951ED7386900FC43CE /* MPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
 		44DB74991ED73E2100FC43CE /* PeersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeersViewController.swift; sourceTree = "<group>"; };
 		44DB749B1ED744C300FC43CE /* PeersCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeersCellViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				44DB74951ED7386900FC43CE /* MPCManager.swift */,
 				44DB74991ED73E2100FC43CE /* PeersViewController.swift */,
 				44DB749B1ED744C300FC43CE /* PeersCellViewController.swift */,
+				443D05F31EDB132500876906 /* CoordsClass.swift */,
 			);
 			path = "GeoMapping-Swift";
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443D05F41EDB132500876906 /* CoordsClass.swift in Sources */,
 				44F6CF411ECB55510087123C /* SignUpController.swift in Sources */,
 				44F6CF3F1ECB54B60087123C /* QRController.swift in Sources */,
 				44DB749A1ED73E2100FC43CE /* PeersViewController.swift in Sources */,

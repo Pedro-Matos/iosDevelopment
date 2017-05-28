@@ -23,11 +23,12 @@ class MapController: UIViewController {
     
     var locs = [Locations]()
     
+    var coords_visited = [CoordsClass]()
+    
     let session1_anot = ["40.6409015@-8.6537111","40.6391622@-8.6532668","40.6396443@-8.6524315"]
     
     let session2_anot = ["40.6331812@-8.66077","40.6303024@-8.6596947"]
     
-   
     @IBAction func create_session1(_ sender: Any) {
         
     
@@ -67,6 +68,29 @@ class MapController: UIViewController {
             i = i + 1
         }
         
+        //casa: @40.6353059,-8.6570489
+        //fabrica ciencia viva: @40.636576,-8.6551177
+        let teste = MKPointAnnotation()
+        teste.coordinate = CLLocationCoordinate2D(latitude: 40.636576, longitude: -8.6551177)
+        mapView.addAnnotation(teste)
+        
+        let teste2 = MKPointAnnotation()
+        teste2.coordinate = CLLocationCoordinate2D(latitude: 40.6353059, longitude: -8.6570489)
+        mapView.addAnnotation(teste2)
+        
+        
+        let pins = mapView.annotations 
+        let currentLocation = mapView.userLocation.location!
+        
+        let nearestPin: MKAnnotation? = pins.reduce((CLLocationDistanceMax, nil)) { (nearest, pin) in
+            let coord = pin.coordinate
+            let loc = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
+            let distance = currentLocation.distance(from: loc)
+            return distance < nearest.0 ? (distance, pin) : nearest
+            }.1
+        
+        NSLog("%@", "CLOSEEE: \(nearestPin?.coordinate)")
+        
         
     }
     
@@ -93,10 +117,13 @@ class MapController: UIViewController {
         //load the locations
         loadSampleLocations()
         
+        loadSampleCoords()
+        
         //dataService.delegate = self
         
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
+        
         
         mapView.showsUserLocation = true
         
@@ -113,9 +140,22 @@ class MapController: UIViewController {
         }
     }
     
+    public func loadSampleCoords(){
+        if let savedMeals = loadCoords() {
+            coords_visited += savedMeals
+        }
+    
+    }
+    
     //MARK: - PERSISTENCE
     private func loadLocs() -> [Locations]? {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Locations.ArchiveURL.path) as? [Locations]
+    }
+    
+    
+    
+    private func loadCoords() -> [CoordsClass]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: CoordsClass.ArchiveURL.path) as? [CoordsClass]
     }
     
     func centerMapOnLocation(location: CLLocation)
