@@ -27,7 +27,7 @@ class MapController: UIViewController {
     
     let session1_anot = ["40.6409015@-8.6537111","40.6391622@-8.6532668","40.6396443@-8.6524315"]
     
-    let session2_anot = ["40.6331812@-8.66077","40.6303024@-8.6596947"]
+    let session2_anot = ["40.6331812@-8.66077","40.6303024@-8.6596947","40.6353655@-8.6571185"]
     
     @IBAction func create_session1(_ sender: Any) {
         
@@ -41,6 +41,7 @@ class MapController: UIViewController {
             }
          }
         
+        //definir qual a sessão a ser utilizada(1/2)
         var sess = [String]()
         
         if self.isSession == true {
@@ -52,42 +53,62 @@ class MapController: UIViewController {
         
         self.isSession = !self.isSession
         
+        //casa: @40.6353655,-8.6571185
+        //fabrica ciencia viva: @40.636576,-8.6551177
+        // casa gisela: @40.6332187,-8.6485305
+
+        
         var i = 0
         while i < sess.count {
             let fullName    = sess[i]
             let fullNameArr = fullName.components(separatedBy: "@")
             
-            let lat    = fullNameArr[0]
-            let long = fullNameArr[1]
+            let lat_sess    = fullNameArr[0]
+            let long_sess = fullNameArr[1]
             
             let annot = MKPointAnnotation()
             
-            annot.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(long)!)
-            mapView.addAnnotation(annot)
-        
+            NSLog("%@", "LATITUDE: \(lat_sess)")
+            annot.coordinate = CLLocationCoordinate2D(latitude: (Double(lat_sess))!, longitude: (Double(long_sess))!)
+            
+            //verificar se ja existe uma
+            
+            var k = 0
+            var tmp = 0
+            while k < coords_visited.count{
+                let lat_array = coords_visited[k].latitude
+                let long_array = coords_visited[k].longitude
+                
+                let coordinate_casa = CLLocation(latitude: (Double(lat_sess))!, longitude: (Double(long_sess))!)
+                let coordinate_array = CLLocation(latitude: Double(lat_array)!, longitude: Double(long_array)!)
+                let distanceInMeters = coordinate_casa.distance(from: coordinate_array)
+                
+                NSLog("%@", "DISTANCIA: \(distanceInMeters)")
+                if(distanceInMeters < 100){
+                    tmp = 1
+                    print("xDDDDDDDDDDDDD")
+                }
+                k = k + 1
+            }
+            if (tmp == 0){
+                mapView.addAnnotation(annot)
+            }
+
             i = i + 1
         }
         
-        //casa: @40.6353059,-8.6570489
-        //fabrica ciencia viva: @40.636576,-8.6551177
-        /*let teste = MKPointAnnotation()
-        teste.coordinate = CLLocationCoordinate2D(latitude: 40.636576, longitude: -8.6551177)
-        mapView.addAnnotation(teste)
         
+        
+        /*
         let teste2 = MKPointAnnotation()
         teste2.coordinate = CLLocationCoordinate2D(latitude: 40.6353059, longitude: -8.6570489)
-        mapView.addAnnotation(teste2)*/
-        
-        // casa gisela: @40.6332187,-8.6485305
-        let teste2 = MKPointAnnotation()
-        teste2.coordinate = CLLocationCoordinate2D(latitude: 40.6332187, longitude: -8.6485305)
         var k = 0
         var tmp = 0
         while k < coords_visited.count{
             let lat = coords_visited[k].latitude
             let long = coords_visited[k].longitude
             
-            let coordinate_casa = CLLocation(latitude: 40.6332187, longitude: -8.6485305)
+            let coordinate_casa = CLLocation(latitude: 40.6353059, longitude: -8.6570489)
             let coordinate_array = CLLocation(latitude: Double(lat)!, longitude: Double(long)!)
             let distanceInMeters = coordinate_casa.distance(from: coordinate_array)
             
@@ -101,13 +122,9 @@ class MapController: UIViewController {
         if (tmp == 0){
             mapView.addAnnotation(teste2)
         }
+        */
         
-        
-        NSLog("%@", "INDICE: \(k)")
-        
-        let teste1 = MKPointAnnotation()
-        teste1.coordinate = CLLocationCoordinate2D(latitude: 40.6342187, longitude: -8.6495305)
-        mapView.addAnnotation(teste1)
+        //NSLog("%@", "INDICE: \(k)")
         
         /*let pins = mapView.annotations
         let currentLocation = mapView.userLocation.location!
@@ -162,11 +179,26 @@ class MapController: UIViewController {
         
         isSession = true
         
-        let homeLocation = locationManager?.location
-        centerMapOnLocation(location: homeLocation!)
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            print("Not first launch.")
+            let homeLocation = self.locationManager?.location
+            self.centerMapOnLocation(location: homeLocation!)
+            
+        } else {
+            print("First launch, setting UserDefault.")
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
+                let homeLocation = self.locationManager?.location
+                self.centerMapOnLocation(location: homeLocation!)
+            })
+        }
+    
+        
+        //let homeLocation = locationManager?.location
+        //centerMapOnLocation(location: homeLocation!)
     }
     
-   
     public func loadSampleLocations(){
         if let savedMeals = loadLocs() {
             locs += savedMeals
